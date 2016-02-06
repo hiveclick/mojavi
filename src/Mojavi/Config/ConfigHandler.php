@@ -144,10 +144,10 @@ abstract class ConfigHandler extends ParameterHolder
 
 		static
 			$keys = array('%MO_APP_DIR%', '%MO_LIB_DIR%', '%MO_MODULE_DIR%',
-						  '%MO_WEBAPP_DIR%', '%MO_COMMON_DIR%', '%MO_DOCROOT_DIR%'),
+						  '%MO_WEBAPP_DIR%', '%MO_APP_DIR%', '%MO_DOCROOT_DIR%'),
 
 			$reps = array(MO_APP_DIR, MO_LIB_DIR, MO_MODULE_DIR,
-						  MO_WEBAPP_DIR, MO_COMMON_DIR, MO_DOCROOT_DIR);
+						  MO_WEBAPP_DIR, MO_APP_DIR, MO_DOCROOT_DIR);
 
 		$value = str_replace($keys, $reps, $value);
 

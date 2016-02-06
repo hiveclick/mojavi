@@ -43,11 +43,9 @@ function __autoload ($class)
 	}
 
 	if (isset($classes[$class])) {
-//		 error_log("Autoloading from autoload.ini (" . number_format(memory_get_usage(true), 0, null, ',') . "): " . $class);
 		// class exists, let's include it
 		require_once($classes[$class]);
 	} else {
-//		 error_log("Autoloading from namespace (" . number_format(memory_get_usage(true), 0, null, ',') . "): " . $class);
 		$className = ltrim($class, '\\');
 		$fileName  = '';
 		$namespace = '';
@@ -64,7 +62,6 @@ function __autoload ($class)
 			// Split the class by underscores and look for it
 			$class_file = str_replace('_', DIRECTORY_SEPARATOR, $class);
 			if (file_exists(MO_LIB_DIR . DIRECTORY_SEPARATOR . $class_file . '.php')) {
-//				 error_log("Autoloading from underscores (" . number_format(memory_get_usage(true), 0, null, ',') . "): " . $class);
 				require_once(MO_LIB_DIR . DIRECTORY_SEPARATOR . $class_file . '.php');
 			} else if (false) {				
 				
@@ -78,7 +75,7 @@ function __autoload ($class)
 				$e->printStackTrace();
 
 				// Clear the cache
-				/* Clearing the cache here can cause a bunch of bus errors in apache, so we don't do it anymore */
+				// Clearing the cache here can cause a bunch of bus errors in apache, so we don't do it anymore */
 				// ConfigCache::clear();
 
 				if (in_array(session_name(), $_COOKIE)) {
