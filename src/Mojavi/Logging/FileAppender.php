@@ -1,0 +1,112 @@
+<?php
+namespace Mojavi\Logging;
+
+use Mojavi\Exception\LoggingException as LoggingException;
+use Exception;
+
+// +---------------------------------------------------------------------------+
+// | This file is part of the Agavi package.								   |
+// | Copyright (c) 2003-2005 Agavi Foundation.								 |
+// |																		   |
+// | For the full copyright and license information, please view the LICENSE   |
+// | file that was distributed with this source code. You can also view the	|
+// | LICENSE file online at http://www.agavi.org/LICENSE.txt				   |
+// |   vi: set noexpandtab:													|
+// |   Local Variables:														|
+// |   indent-tabs-mode: t													 |
+// |   End:																	|
+// +---------------------------------------------------------------------------+
+
+/**
+ * FileAppender appends Messages to a given file.
+ */
+class FileAppender extends Appender
+{
+
+	protected $_handle = null;
+	protected $_filename = '';
+
+	/**
+	 * Initialize the FileAppender.
+	 *
+	 * @param array An array of parameters.
+	 *
+	 * @return void
+	 */
+	public function initialize($params)
+	{
+		if (isset($params['file'])) {
+			$this->_filename = $params['file'];
+		}
+		if (isset($params['priority'])) {
+			$this->setPriority($params['priority']);
+		}
+	}
+
+	/**
+	 * Retrieve the file handle for this FileAppender.
+	 *
+	 * @throws <b>LoggingException</b> if file cannot be opened for appending.
+	 *
+	 * @return integer
+	 */
+	protected function _getHandle()
+	{
+		if (is_null($this->_handle)) {
+			if (is_writable($this->_filename)) {
+				if (!$this->_handle = fopen($this->_filename, 'a')) {
+					throw new LoggingException("Cannot open file ({$this->_filename})");
+				}
+			} else {
+				throw new LoggingException("Cannot open file for writing ({$this->_filename})");
+			}
+		}
+		
+		return $this->_handle;
+	}
+
+	/**
+	 * Execute the shutdown procedure.
+	 *
+	 * If open, close the filehandle.
+	 *
+	 * return void
+	 */
+	public function shutdown()
+	{
+		if (!is_null($this->_handle)) {
+			fclose($this->_handle);
+		}
+	}
+
+	/**
+	 * Write a Message to the file.
+	 *
+	 * @param Message
+	 *
+	 * @throws <b>LoggingException</b> if no Layout is set or the file
+	 *		 cannot be written.
+	 *
+	 * @return void
+	 */
+	public function write($message)
+	{
+		if (($layout = $this->getLayout()) === null) {
+			throw new LoggingException('No Layout set');
+		}
+
+		$str = sprintf("%s\n", $this->getLayout()->format($message));
+		try {
+			if (fwrite($this->_getHandle(), $str) === FALSE) {
+				$this->_handle = null;
+				if (fwrite($this->_getHandle(), $str) === FALSE) {
+					throw new LoggingException("Cannot write to file ({$this->_filename})");
+				}
+			}
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
+}
+

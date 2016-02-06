@@ -1,0 +1,16 @@
+{
+    "name": "hiveclick/mojavi",
+    "description": "Lightweight MVC Framework that works with MySQL, Postgres, and Mongo databases",
+    "require": {
+        "zendframework/zend-http": "^2.5",
+        "zendframework/zend-json": "^2.6",
+        "oyejorge/less.php": "v1.7.0.10"
+    },
+    "authors": [
+        {
+            "name": "hobby",
+            "email": "mark@hiveclick.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
