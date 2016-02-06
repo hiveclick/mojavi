@@ -1,7 +1,7 @@
 #Mojavi#
 ======
 
-Mojavi MVC Framework for PHP 5.  Mojavi was one of the first MVC frameworks made for PHP 5 using an object oriented design.  Though the original contributors have ceased development on it, many of it's concepts have made their way into current MVC frameworks, such as Symfony.  This version contains several ported files from other branches like Agavi and Symfony.  We've also finished some of the code stubs that were in the original version.
+Mojavi MVC Framework for PHP 5.  Mojavi was one of the first MVC frameworks made for PHP 5.3+ using an object oriented design.  Though the original contributors have ceased development on it, many of it's concepts have made their way into current MVC frameworks, such as Symfony.  This version contains several ported files from other branches like Agavi and Symfony.  We've also finished some of the code stubs that were in the original version.
 
 ##Additions##
 =============
