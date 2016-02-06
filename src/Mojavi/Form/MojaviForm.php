@@ -94,28 +94,6 @@ class MojaviForm extends MojaviObject {
 	function isModified() {
 	    return (count($this->getModifiedColumns()) > 0);
 	}
-	
-	/**
-	 * Attempts to validate this form.  If any errors occur, they are
-	 * populated in the internal errors object.
-	 * @return boolean - true if validation succeeds
-	 */
-	function validate() {
-	    return true;
-	}
-	
-	/**
-	 * Resets a form.  This is mostly used with certain form elements (like a checkbox).
-	 * If a checkbox is checked, it is passed in the request, if it is not checked, then
-	 * nothing is passed.  By resetting a checkbox property to false here, then every
-	 * request it is set to false, UNLESS a value is passed in - which is the way it's
-	 * supposed to work.
-	 * @return boolean - true if validation succeeds
-	 */
-	function reset() {
-	    $this->setModifiedColumns(null);
-	    return true;
-	}
 
 	/**
 	 * Populate will parse the elements of an array (ResultSet) or XML_ELEMENT_NODE and attempt
