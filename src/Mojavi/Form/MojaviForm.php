@@ -110,6 +110,7 @@ class MojaviForm extends MojaviObject {
 			foreach ($arg0 as $key => $value) {
 				$callableName = null;
 				$entry = str_replace("_", "", $key);
+				$entry = str_replace("-", "", $entry);
 				if (is_array($value)) {
 					/*
 					* If this is an array, then we need to add all the elements, so first check for an
