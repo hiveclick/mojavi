@@ -301,7 +301,7 @@ class MongoForm extends CommonForm {
 		$return_array = array();
 		$set_data_array = array();
 		$unset_data_array = array();
-		foreach ($this->toArray(true, true) AS $name => $value) {
+		foreach ($this->toDbArray(true, true) AS $name => $value) {
 			if (in_array($name, $this->getModifiedColumns())) {
 				/* @todo at some point in the future we may want to reference things by more than _id, so this will have to be abstracted */
 				if(strpos($name, '_') === 0) {
