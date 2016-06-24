@@ -5,7 +5,6 @@
     "require": {
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-json": "^2.6",
-        "oyejorge/less.php": "v1.7.0.10",
         "php": ">=5.3.0"
     },
     "authors": [
