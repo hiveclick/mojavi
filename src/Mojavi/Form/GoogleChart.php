@@ -3,7 +3,7 @@ namespace Mojavi\Form;
 /**
  * GoogleChart contains methods to work with the Google Chart API v2
  */
-class GoogleChart extends CommonForm {
+class GoogleChart extends DateRangeForm {
 	
 	protected $cols;
 	protected $slices;
