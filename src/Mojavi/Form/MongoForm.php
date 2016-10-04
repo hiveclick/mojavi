@@ -27,14 +27,16 @@ class MongoForm extends CommonForm {
     		} else if (is_null($arg0)) {
     			parent::setId($arg0);
     		} else if (is_string($arg0) && trim($arg0) == '') {
-    			parent::setId(null);
-    		} else {
+			    parent::setId(null);
+		    } else if (is_int($arg0) && $arg0 == 0) {
+			    parent::setId(null);
+		    } else {
     			try {
     				throw new \Exception('Invalid ID set: ' . var_export($arg0, true));
     			} catch (\Exception $e) {
     				\Mojavi\Logging\LoggerManager::error(__METHOD__ . " :: " . $e->getTraceAsString());
-    				throw $e;
     			}
+			    parent::setId(null);
     		}
 	    } else if ($this->getIdType() == self::ID_TYPE_STRING) {
 	        if (is_string($arg0)) {
@@ -45,13 +47,15 @@ class MongoForm extends CommonForm {
 	            parent::setId($arg0);
 	        } else if (is_string($arg0) && trim($arg0) == '') {
 	            parent::setId(null);
+	        } else if (is_int($arg0) && $arg0 == 0) {
+		        parent::setId(null);
 	        } else {
 	            try {
     				throw new \Exception('Invalid ID set: ' . var_export($arg0, true));
 	            } catch (\Exception $e) {
     				\Mojavi\Logging\LoggerManager::error(__METHOD__ . " :: " . $e->getTraceAsString());
-    				throw $e;
 	            }
+		        parent::setId(null);
 	        }
 	    }
 	}
