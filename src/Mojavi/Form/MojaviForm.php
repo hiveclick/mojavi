@@ -239,9 +239,8 @@ class MojaviForm extends MojaviObject {
 	        $method_name = 'get' . str_replace("_", "", $property_name);
 	        if ($reflection->hasMethod($method_name)) {
 	            $value = $this->$method_name();
-	            if (is_string($value) && trim($value) == '') { continue; }
-	            if (is_array($value) && empty($value)) { continue; }
-	            if (is_null($value)) { continue; }
+		        if (is_string($value) && trim($value) == '') { $value = null; }
+		        if (is_array($value) && empty($value)) { $value = array(); }
 	             
 	            if (strtolower($method_name) == 'getid') {
 	                $ret_val['_id'] = $value;
@@ -269,9 +268,8 @@ class MojaviForm extends MojaviObject {
 	                                $ret_val[$property_name][$key] = $val;
 	                            }
 	                        } else {
-	                            if (is_string($item) && trim($item) == '') { continue; }
-	                            if (is_null($item)) { continue; }
-	                            if (is_array($item) && empty($item)) { continue; }
+	                            if (is_string($item) && trim($item) == '') { $item = null; }
+	                            if (is_array($item) && empty($item)) { $item = arary(); }
 	                            $ret_val[$property_name][$key] = $item;
 	                        }
 	                    }
@@ -283,9 +281,8 @@ class MojaviForm extends MojaviObject {
 	            }
 	        } else {
 	            $value = $this->$property_name;
-	            if (is_string($value) && trim($value) == '') { continue; }
-	            if (is_array($value) && empty($value)) { continue; }
-	            if (is_null($value)) { continue; }
+	            if (is_string($value) && trim($value) == '') { $value = null; }
+	            if (is_array($value) && empty($value)) { $value = array(); }
 	            $ret_val[$property_name] = $value;
 	        }
 	    }

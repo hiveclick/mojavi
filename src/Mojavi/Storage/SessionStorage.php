@@ -54,7 +54,7 @@ class SessionStorage extends Storage
 		{
 
 			// start our session
-			session_start();
+			@session_start();
 
 		}
 
