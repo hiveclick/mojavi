@@ -63,7 +63,6 @@ abstract class Controller extends MojaviObject
 
 		$file = MO_MODULE_DIR . '/' . $moduleName . '/actions/' . $actionName .
 				'Action.php';
-
 		return is_readable($file);
 
 	}
@@ -443,7 +442,7 @@ abstract class Controller extends MojaviObject
 	protected function initialize ()
 	{
 
-		if (MO_USE_DATABASE)
+		if (defined("MO_USE_DATABASE") && MO_USE_DATABASE)
 		{
 			// setup our database connections
 			$this->databaseManager = new DatabaseManager();

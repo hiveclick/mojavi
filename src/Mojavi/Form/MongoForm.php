@@ -420,6 +420,80 @@ class MongoForm extends CommonForm {
 	}
 
 	/**
+	 * Helper function to save a \MongoId
+	 * @param $value string|\MongoId
+	 * @return \MongoId
+	 */
+	static function toMongoId($value) {
+		return \Mojavi\Util\Mongo::toMongoId($value);
+	}
+
+	/**
+	 * Helper function to save an array
+	 * @param $value string|array|\MongoId
+	 * @return array
+	 */
+	static function toMongoArray($value) {
+		return \Mojavi\Util\Mongo::toMongoArray($value);
+	}
+
+	/**
+	 * Helper function to save an array of sub documents
+	 * @param $value string|array|\MongoId
+	 * @param $class_name string
+	 * @return array
+	 */
+	static function toMongoSubDoc($value, $class_name) {
+		return \Mojavi\Util\Mongo::toMongoSubDoc($value, $class_name);
+	}
+
+	/**
+	 * Helper function to save an array of sub documents
+	 * @param $value string|\MongoId
+	 * @param $class_name string
+	 * @return array
+	 */
+	static function toMongoSubDocArray($value, $class_name) {
+		return \Mojavi\Util\Mongo::toMongoSubDocArray($value, $class_name);
+	}
+
+	/**
+	 * Helper function to save a \MongoDate
+	 * @param $value string|int|\MongoDate
+	 * @return \MongoDate
+	 */
+	static function toMongoDate($value) {
+		return \Mojavi\Util\Mongo::toMongoDate($value);
+	}
+
+	/**
+	 * Helper function to save an int
+	 * @param $value string|int
+	 * @return int
+	 */
+	static function toMongoInt($value) {
+		return \Mojavi\Util\Mongo::toMongoInt($value);
+	}
+
+	/**
+	 * Helper function to save a boolean
+	 * @param $value string|int|boolean
+	 * @return boolean
+	 */
+	static function toMongoBoolean($value) {
+		return \Mojavi\Util\Mongo::toMongoBoolean($value);
+	}
+
+	/**
+	 * Helper function to save a string
+	 * @param $value string|array|object
+	 * @return string
+	 */
+	static function toMongoString($value) {
+		return \Mojavi\Util\Mongo::toMongoString($value);
+	}
+
+	/**
 	 * Returns the _id_type
 	 * @return integer
 	 */
@@ -436,27 +510,6 @@ class MongoForm extends CommonForm {
 	 */
 	function setIdType($arg0) {
 		$this->_id_type = $arg0;
-		return $this;
-	}
-	
-	/**
-	 * Returns the created_time field.
-	 * @return string
-	 */
-	function getCreatedTime() {
-		if (is_null($this->created_time)) {
-			$this->created_time = new \MongoDate();
-		}
-		return $this->created_time;
-	}
-		
-	/**
-	 * Sets the created_time field.
-	 * @param string $arg0
-	 */
-	function setCreatedTime($arg0) {
-		$this->created_time = $arg0;
-		$this->addModifiedColumn('created_time');
 		return $this;
 	}
 
